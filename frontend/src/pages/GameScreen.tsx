@@ -17,18 +17,22 @@ export default observer(function GameScreen() {
   }, [])
 
   return(
-    <main className="flex flex-col justify-center items-center h-screen p-8 gap-1">
-      {store.guesses.map((_, i) => (
-        <Grid 
-          key={i}
-          word={store.word} 
-          guess={store.guesses[i]} 
-          isGuessed={i < store.currentGuess}/>
-      ))}
-      <h1>won/loss</h1>
-      <Keyboard store={store}/>
-      word: {store.word}
-      guesses: {JSON.stringify(store.guesses)}
+    <main className="flex flex-col justify-center items-center h-screen p-8 gap-4">
+      <div className="flex flex-col gap-1 justify-center items-center">  
+        {store.guesses.map((_, i) => (
+          <Grid 
+            key={i}
+            word={store.word} 
+            guess={store.guesses[i]} 
+            isGuessed={i < store.currentGuess}/>
+        ))}
+        {/* <h1>won/loss</h1> */}
+      </div>
+      <div> 
+        <Keyboard store={store}/>
+      </div>
+      {/* word: {store.word}
+      guesses: {JSON.stringify(store.guesses)} */}
     </main>
   )
 })
