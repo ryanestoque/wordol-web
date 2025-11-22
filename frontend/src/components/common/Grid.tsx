@@ -18,7 +18,7 @@ export default function Grid({ isGuessed, guess, word } : any) {
           <div 
             key={i}
             style={{ width: cellSize }}
-            className={`h-18 max-w-18 border ${cellStyle} border-black font-martires-black uppercase flex items-center justify-center text-5xl`}>
+            className={`h-18 max-w-18 border-2 ${cellStyle} border-neutral-300 font-martires-black uppercase flex items-center justify-center text-5xl`}>
             {guess[i]}
           </div>
         )
