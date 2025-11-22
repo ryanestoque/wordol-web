@@ -46,13 +46,21 @@ export default function GameHeader() {
                   <p className="font-inter-medium">Loss/es</p>  
                 </div>
               </div>
-              
             </DialogHeader>
           </DialogContent>
         </Dialog>
-        <Button variant="ghost" className="cursor-pointer">
-          <Settings className="scale-150 md:scale-180"/>
-        </Button>
+        <Dialog>
+          <DialogTrigger>
+            <Button variant="ghost" className="cursor-pointer">
+              <Settings className="scale-150 md:scale-180"/>
+            </Button>
+          </DialogTrigger> 
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle className="text-3xl font-martires-black">SETTINGS</DialogTitle>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
       </div>
     </header>
   )

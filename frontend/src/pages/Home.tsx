@@ -10,6 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { Settings, User } from "lucide-react";
 
 export default observer(function Home() {
   const today = new Date();
@@ -23,11 +24,34 @@ export default observer(function Home() {
   const formattedDate = new Intl.DateTimeFormat("en-US", options).format(today);
 
   return(
-    <>
-      <main className="flex flex-col justify-center items-center h-screen p-8">
+    <div className="flex flex-col h-screen p-4 gap-4">
+      <header className="flex flex-row-reverse gap-4">
+        <Dialog>
+          <DialogTrigger>
+            <Button variant="ghost" className="cursor-pointer">
+              <Settings className="scale-150 md:scale-180"/>
+            </Button>
+          </DialogTrigger> 
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle className="text-3xl font-martires-black">SETTINGS</DialogTitle>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
+      </header>
+      <main className="flex-1 flex flex-col justify-center items-center">
         <Hero />
         <div className="flex flex-col-reverse sm:flex-row gap-2 justify-center items-center mb-12">
-          <Button size={"lg"} variant={"outline"} className="cursor-pointer w-full sm:w-1/2 py-6 border-black">How to Play?</Button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button size={"lg"} variant={"outline"} className="cursor-pointer w-full sm:w-1/2 py-6 border-black">How to Play?</Button>
+            </DialogTrigger> 
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle className="text-3xl font-martires-black">HOW TO PLAY</DialogTitle>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>     
           <Dialog>
             <DialogTrigger asChild>
               <Button size={"lg"} variant={"outline"} className="cursor-pointer w-full sm:w-1/2 py-6 border-black">My Stats</Button>
@@ -63,6 +87,6 @@ export default observer(function Home() {
           <p>Version 1.0</p>
         </div>
       </main>
-    </>
+    </div>
   );
 })
