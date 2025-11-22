@@ -3,6 +3,7 @@ import Home from './pages/Home'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import GameScreen from './pages/GameScreen'
+import { Toaster } from './components/ui/sonner'
 
 function App() {
   return (
@@ -11,7 +12,6 @@ function App() {
       <Route path="/login" element={<Login />}/>
       <Route path="/home" element={<Home />}/>
       <Route path="/game" element={<GameScreen />}>
-        
       </Route>
     </Routes>
   )

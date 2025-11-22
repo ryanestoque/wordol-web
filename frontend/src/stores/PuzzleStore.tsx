@@ -1,4 +1,5 @@
 import words from '../../words.json'
+import { toast } from "sonner"
 
 export default {
   word: '',
@@ -37,8 +38,22 @@ export default {
     this.currentGuess = 0
   },
   submitGuess() {
-    if (words.includes(this.guesses[this.currentGuess])) {
+    const currentAttempt = this.guesses[this.currentGuess];
+
+    if (words.includes(currentAttempt)) {
       this.currentGuess += 1
+    }
+
+    if (currentAttempt.length < 5) {
+      toast.error("Not enough letters!")
+      return;
+    }
+
+    const lowercasedWords = words.map(w => w.toLowerCase());
+
+    if (!lowercasedWords.includes(currentAttempt.toLowerCase())) {
+      toast.error("Not in the word list!")
+      return;
     }
   },
   handleKeyup(e) {
