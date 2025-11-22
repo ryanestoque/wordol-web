@@ -38,7 +38,7 @@ export default observer(function GameScreen() {
         {/* word: {store.word}
         guesses: {JSON.stringify(store.guesses)} */}
       </main>
-      <Toaster position="top-center" visibleToasts={1} compact/>
+      <Toaster position="top-center" visibleToasts={1}/>
     </div>
   )
 })
