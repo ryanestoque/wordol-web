@@ -55,6 +55,16 @@ export default {
       toast.error("Not in the word list!")
       return;
     }
+
+    // Check if the guess is the winning word
+    if (currentAttempt.toLowerCase() === this.word.toLowerCase()) {
+      toast("You Win!");
+    } else {
+  
+      if (this.currentGuess === 6 && currentAttempt !== this.word) {
+        toast("Secret word: " + this.word.toUpperCase());
+      }
+    }
   },
   handleKeyup(e) {
     if (this.won || this.lost) {
