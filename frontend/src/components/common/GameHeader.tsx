@@ -1,8 +1,14 @@
 import { ChartNoAxesColumnIncreasing, RotateCcw, Settings } from "lucide-react";
 import { Button } from "../ui/button";
 import { Link, useNavigate } from "react-router-dom";
-
-
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 export default function GameHeader() {
   return(
@@ -17,9 +23,33 @@ export default function GameHeader() {
         <Button variant="ghost" className="cursor-pointer" onClick={() => window.location.reload()}>
           <RotateCcw className="scale-150 md:scale-180"/>
         </Button>
-        <Button variant="ghost" className="cursor-pointer">
-          <ChartNoAxesColumnIncreasing className="scale-150 md:scale-180"/>
-        </Button>
+        <Dialog>
+          <DialogTrigger>
+            <Button variant="ghost" className="cursor-pointer">
+              <ChartNoAxesColumnIncreasing className="scale-150 md:scale-180"/>
+            </Button>
+          </DialogTrigger> 
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle className="text-3xl font-martires-black">MY STATS</DialogTitle>
+              <div className="flex flex-row mt-8 justify-evenly items-center">
+                <div className="flex flex-col items-center">
+                  <h1 className="font-inter-bold text-4xl">0</h1>  
+                  <p className="font-inter-medium">Games</p>  
+                </div>
+                <div className="flex flex-col items-center">
+                  <h1 className="font-inter-bold text-4xl">0</h1>  
+                  <p className="font-inter-medium">Win/s</p>  
+                </div>
+                <div className="flex flex-col items-center">
+                  <h1 className="font-inter-bold text-4xl">0</h1>  
+                  <p className="font-inter-medium">Loss/es</p>  
+                </div>
+              </div>
+              
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
         <Button variant="ghost" className="cursor-pointer">
           <Settings className="scale-150 md:scale-180"/>
         </Button>
