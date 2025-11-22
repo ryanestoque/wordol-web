@@ -12,7 +12,7 @@ export default function Login() {
         <Input type="email" placeholder="Email" className="w-full p-6 border border-black md:text-base"/>
         <Input type="password" placeholder="Password" className="w-full p-6 border border-black md:text-base"/>
         <Button className="mt-4 p-6 cursor-pointer">Log in</Button>  
-        <Link to={"/"} className="text-center">
+        <Link to={"/register"} className="text-center">
           <Button className="p-6 cursor-pointer" variant={"link"}>I don't have an account yet</Button>  
         </Link>
       </div>
