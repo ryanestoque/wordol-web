@@ -20,7 +20,7 @@ export default observer(function GameScreen() {
   return(
     <div className="flex flex-col h-screen p-4 gap-4">
       <GameHeader />
-      <main className="flex-1 flex flex-col justify-center items-center  gap-4">
+      <main className="flex-1 flex flex-col justify-center items-center  gap-6">
         <div className="flex flex-col gap-1 justify-center items-center">  
           {store.guesses.map((_, i) => (
             <Grid 

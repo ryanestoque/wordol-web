@@ -4,6 +4,16 @@ import Hero from "@/components/common/Hero";
 import { Link } from "react-router-dom";
 
 export default observer(function Home() {
+  const today = new Date();
+
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  };
+
+  const formattedDate = new Intl.DateTimeFormat("en-US", options).format(today);
+
   return(
     <>
       <main className="flex flex-col justify-center items-center h-screen p-8">
@@ -18,8 +28,8 @@ export default observer(function Home() {
           </Button>
         </div>
         <div className="text-center">
-          <p className="font-inter-bold">November 18, 2025</p>
-          <p>Word #1</p>
+          <p className="font-inter-bold">{formattedDate}</p>
+          <p>Version 1.0</p>
         </div>
       </main>
     </>
