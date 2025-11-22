@@ -5,12 +5,13 @@ import { Link } from "react-router-dom";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Settings, User } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 export default observer(function Home() {
   const today = new Date();
@@ -34,7 +35,19 @@ export default observer(function Home() {
           </DialogTrigger> 
           <DialogContent>
             <DialogHeader>
-              <DialogTitle className="text-3xl font-martires-black">SETTINGS</DialogTitle>
+              <DialogTitle className="text-3xl font-martires-black mb-6">SETTINGS</DialogTitle>
+              <div className="flex flex-col gap-6">
+                <div className="flex flex-row items-center justify-between space-x-2">
+                  <Label htmlFor="airplane-mode" className="font-inter-medium text-base">Dark Mode</Label>
+                  <Switch id="airplane-mode" className="w-10"/>
+                </div>
+                <div className="flex flex-row items-center justify-between space-x-2">
+                  <Label htmlFor="airplane-mode" className="font-inter-medium text-base">Account</Label>
+                </div>
+                <div className="flex flex-row items-center justify-between space-x-2">
+                  <Label htmlFor="airplane-mode" className="font-inter-medium text-base">Clear Statistics</Label>
+                </div>
+              </div>
             </DialogHeader>
           </DialogContent>
         </Dialog>
@@ -71,6 +84,10 @@ export default observer(function Home() {
                   <div className="flex flex-col items-center">
                     <h1 className="font-inter-bold text-4xl">0</h1>  
                     <p className="font-inter-medium">Loss/es</p>  
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <h1 className="font-inter-bold text-4xl">0%</h1>  
+                    <p className="font-inter-medium">Winrate</p>  
                   </div>
                 </div>
               </DialogHeader>

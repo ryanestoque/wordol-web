@@ -1,4 +1,4 @@
-import { ChartNoAxesColumnIncreasing, RotateCcw, Settings } from "lucide-react";
+import { ChartNoAxesColumnIncreasing, ChevronRight, RotateCcw, Settings } from "lucide-react";
 import { Button } from "../ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -9,6 +9,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { Label } from "../ui/label";
+import { Switch } from "../ui/switch";
 
 export default function GameHeader() {
   return(
@@ -45,11 +47,15 @@ export default function GameHeader() {
                   <h1 className="font-inter-bold text-4xl">0</h1>  
                   <p className="font-inter-medium">Loss/es</p>  
                 </div>
+                <div className="flex flex-col items-center">
+                  <h1 className="font-inter-bold text-4xl">0%</h1>  
+                  <p className="font-inter-medium">Winrate</p>  
+                </div>
               </div>
             </DialogHeader>
           </DialogContent>
         </Dialog>
-        <Dialog>
+<Dialog>
           <DialogTrigger>
             <Button variant="ghost" className="cursor-pointer">
               <Settings className="scale-150 md:scale-180"/>
@@ -57,7 +63,19 @@ export default function GameHeader() {
           </DialogTrigger> 
           <DialogContent>
             <DialogHeader>
-              <DialogTitle className="text-3xl font-martires-black">SETTINGS</DialogTitle>
+              <DialogTitle className="text-3xl font-martires-black mb-6">SETTINGS</DialogTitle>
+              <div className="flex flex-col gap-6">
+                <div className="p-0 flex flex-row items-center justify-between space-x-2">
+                  <Label htmlFor="airplane-mode" className="font-inter-medium text-base">Lagom Mode</Label>
+                  <Switch id="airplane-mode"/>
+                </div>
+                <Button variant="ghost" className="p-0 flex flex-row items-center justify-between space-x-2">
+                  <Label htmlFor="airplane-mode" className="font-inter-medium text-base">Akawnt</Label>
+                </Button>
+                <div className="flex flex-row items-center justify-between space-x-2">
+                  <Label htmlFor="airplane-mode" className="font-inter-medium text-base">Clear Statistics</Label>
+                </div>
+              </div>
             </DialogHeader>
           </DialogContent>
         </Dialog>

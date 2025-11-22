@@ -35,7 +35,7 @@ export default observer(function Keyboard({ store } : any) {
                 style={{
                   width: char === "enter" || char === "backspace" ? keySize2 : keySize1,
                   fontSize: char === "enter" || char === "backspace" ? 16 : 24,
-                  height: 60,
+                  height: 56,
                   maxWidth: char === "enter" || char === "backspace" ? 75 : 50,
                 }}
                 className={`cursor-pointer font-martires-bold rounded-xs m-px flex items-center justify-center uppercase hover:${cellStyle} ${cellStyle}`}
