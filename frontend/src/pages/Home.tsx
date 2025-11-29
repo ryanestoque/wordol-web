@@ -12,6 +12,8 @@ import {
 import { Settings, User } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import GameSettings from "@/components/common/GameSettings";
+import GameStats from "@/components/common/GameStats";
 
 export default observer(function Home() {
   const today = new Date();
@@ -27,30 +29,7 @@ export default observer(function Home() {
   return(
     <div className="flex flex-col h-screen p-4 gap-4">
       <header className="flex flex-row-reverse gap-4">
-        <Dialog>
-          <DialogTrigger>
-            <Button variant="ghost" className="cursor-pointer">
-              <Settings className="scale-150 md:scale-180"/>
-            </Button>
-          </DialogTrigger> 
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle className="text-3xl font-martires-black mb-6">SETTINGS</DialogTitle>
-              <div className="flex flex-col gap-6">
-                <div className="flex flex-row items-center justify-between space-x-2">
-                  <Label htmlFor="airplane-mode" className="font-inter-medium text-base">Dark Mode</Label>
-                  <Switch id="airplane-mode" className="w-10"/>
-                </div>
-                <div className="flex flex-row items-center justify-between space-x-2">
-                  <Label htmlFor="airplane-mode" className="font-inter-medium text-base">Account</Label>
-                </div>
-                <div className="flex flex-row items-center justify-between space-x-2">
-                  <Label htmlFor="airplane-mode" className="font-inter-medium text-base">Clear Statistics</Label>
-                </div>
-              </div>
-            </DialogHeader>
-          </DialogContent>
-        </Dialog>
+        <GameSettings />
       </header>
       <main className="flex-1 flex flex-col justify-center items-center">
         <Hero />
@@ -65,34 +44,7 @@ export default observer(function Home() {
               </DialogHeader>
             </DialogContent>
           </Dialog>     
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button size={"lg"} variant={"outline"} className="cursor-pointer w-full sm:w-1/2 py-6 border-black">My Stats</Button>
-            </DialogTrigger> 
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle className="text-3xl font-martires-black">MY STATS</DialogTitle>
-                <div className="flex flex-row mt-8 justify-evenly items-center">
-                  <div className="flex flex-col items-center">
-                    <h1 className="font-inter-bold text-4xl">0</h1>  
-                    <p className="font-inter-medium">Games</p>  
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <h1 className="font-inter-bold text-4xl">0</h1>  
-                    <p className="font-inter-medium">Win/s</p>  
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <h1 className="font-inter-bold text-4xl">0</h1>  
-                    <p className="font-inter-medium">Loss/es</p>  
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <h1 className="font-inter-bold text-4xl">0%</h1>  
-                    <p className="font-inter-medium">Winrate</p>  
-                  </div>
-                </div>
-              </DialogHeader>
-            </DialogContent>
-          </Dialog>     
+          <GameStats />   
           <Button asChild size={"lg"} className="cursor-pointer w-full sm:w-1/2 py-6">
             <Link to={"/game"} >
               Play
