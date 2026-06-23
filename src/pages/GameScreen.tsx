@@ -6,7 +6,6 @@ import PuzzleStore from "@/stores/PuzzleStore";
 import { observer, useLocalObservable } from "mobx-react-lite";
 import { useEffect } from "react";
 
-
 export default observer(function GameScreen() {
   const store = useLocalObservable(() => PuzzleStore)
   useEffect(() => {
