@@ -9,10 +9,10 @@ import {
 import HowToPlay from "@/components/common/HowToPlay";
 import GameStats from "@/components/common/GameStats";
 import PageLayout from "@/components/common/PageLayout";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 export default observer(function Home() {
-  const itemVariants = {
+  const itemVariants: Variants = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0, transition: { duration: 0.5, type: "spring", stiffness: 100 } }
   };
