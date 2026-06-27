@@ -5,117 +5,117 @@
 
 @font-face {
   font-family: "Inter-Black";
-  src: url('fonts/inter_black.ttf')
+  src: url('/fonts/inter_black.ttf')
 }
 
 @font-face {
   font-family: "Inter-Bold";
-  src: url('fonts/inter_bold.ttf')
+  src: url('/fonts/inter_bold.ttf')
 }
 
 @font-face {
   font-family: "Inter-Extrabold";
-  src: url('fonts/inter_extrabold.ttf')
+  src: url('/fonts/inter_extrabold.ttf')
 }
 
 @font-face {
   font-family: "Inter-Extralight";
-  src: url('fonts/inter_extralight.ttf')
+  src: url('/fonts/inter_extralight.ttf')
 }
 
 @font-face {
   font-family: "Inter-Light";
-  src: url('fonts/inter_light.ttf')
+  src: url('/fonts/inter_light.ttf')
 }
 
 @font-face {
   font-family: "Inter-Medium";
-  src: url('fonts/inter_medium.ttf')
+  src: url('/fonts/inter_medium.ttf')
 }
 
 @font-face {
   font-family: "Inter-Regular";
-  src: url('fonts/inter_regular.ttf')
+  src: url('/fonts/inter_regular.ttf')
 }
 
 @font-face {
   font-family: "Inter-Semibold";
-  src: url('fonts/inter_semibold.ttf')
+  src: url('/fonts/inter_semibold.ttf')
 }
 
 @font-face {
   font-family: "Inter-Thin";
-  src: url('fonts/inter_thin.ttf')
+  src: url('/fonts/inter_thin.ttf')
 }
 
 @font-face {
   font-family: "Inter-Black";
-  src: url('fonts/inter_black.ttf')
+  src: url('/fonts/inter_black.ttf')
 }
 
 @font-face {
   font-family: "Martires-Black";
-  src: url('fonts/martires_black.otf')
+  src: url('/fonts/martires_black.otf')
 }
 
 @font-face {
   font-family: "Martires-Bold";
-  src: url('fonts/martires_bold.otf')
+  src: url('/fonts/martires_bold.otf')
 }
 
 @font-face {
   font-family: "Martires-Demibold";
-  src: url('fonts/martires_demibold.otf')
+  src: url('/fonts/martires_demibold.otf')
 }
 
 @font-face {
   font-family: "Martires-Extrabold";
-  src: url('fonts/martires_extrabold.otf')
+  src: url('/fonts/martires_extrabold.otf')
 }
 
 @font-face {
   font-family: "Martires-Extralight";
-  src: url('fonts/martires_extralight.otf')
+  src: url('/fonts/martires_extralight.otf')
 }
 
 @font-face {
   font-family: "Martires-Heavy";
-  src: url('fonts/martires_heavy.otf')
+  src: url('/fonts/martires_heavy.otf')
 }
 
 @font-face {
   font-family: "Martires-Light";
-  src: url('fonts/martires_light.otf')
+  src: url('/fonts/martires_light.otf')
 }
 
 @font-face {
   font-family: "Martires-Medium";
-  src: url('fonts/martires_medium.otf')
+  src: url('/fonts/martires_medium.otf')
 }
 
 @font-face {
   font-family: "Martires-Regular";
-  src: url('fonts/martires_regular.otf')
+  src: url('/fonts/martires_regular.otf')
 }
 
 @font-face {
   font-family: "Martires-Semibold";
-  src: url('fonts/martires_semibold.otf')
+  src: url('/fonts/martires_semibold.otf')
 }
 
 @font-face {
   font-family: "Martires-Thin";
-  src: url('fonts/martires_thin.otf')
+  src: url('/fonts/martires_thin.otf')
 }
 
 @font-face {
   font-family: "Martires-Ultrabold";
-  src: url('fonts/martires_ultrabold.otf')
+  src: url('/fonts/martires_ultrabold.otf')
 }
 
 @font-face {
   font-family: "Martires-Ultralight";
-  src: url('fonts/martires_ultralight.otf')
+  src: url('/fonts/martires_ultralight.otf')
 }
 
 @theme {
