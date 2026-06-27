@@ -6,7 +6,7 @@ import { runInAction } from "mobx";
 
 export default {
   word: '',
-  guesses: [],
+  guesses: new Array(6).fill(''),
   currentGuess: 0,
   loading: true,
   

@@ -1,8 +1,7 @@
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import GameScreen from './pages/GameScreen'
-import { Toaster } from './components/ui/sonner'
 import { AnimatePresence } from 'framer-motion'
 
 function App() {
