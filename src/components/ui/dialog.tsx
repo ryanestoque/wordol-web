@@ -41,7 +41,7 @@ function DialogOverlay({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { duration: 0.3 } }}
         className={cn(
-          "fixed inset-0 isolate z-50 bg-black/30 supports-backdrop-filter:backdrop-blur-sm data-closed:animate-out data-closed:fade-out-0 duration-200",
+          "fixed inset-0 isolate z-50 bg-black/30 supports-backdrop-filter:backdrop-blur-sm data-closed:animate-out data-closed:fade-out-0 data-closed:duration-200",
           className
         )}
       />
@@ -63,10 +63,10 @@ function DialogContent({
       <DialogPrimitive.Content asChild {...props}>
         <motion.div
           data-slot="dialog-content"
-          initial={{ opacity: 0, scale: 0.8, x: "-50%", y: "-50%" }}
-          animate={{ opacity: 1, scale: 1, x: "-50%", y: "-50%", transition: { type: "spring", bounce: 0.45, duration: 0.6 } }}
+          initial={{ opacity: 0, x: "-50%", y: "-40%" }}
+          animate={{ opacity: 1, x: "-50%", y: "-50%", transition: { ease: "easeOut", duration: 0.25 } }}
           className={cn(
-            "fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] gap-6 rounded-[min(var(--radius-4xl),24px)] bg-popover p-6 text-sm text-popover-foreground shadow-xl ring-1 ring-foreground/5 outline-none sm:max-w-md dark:ring-foreground/10 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 duration-200",
+            "fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] gap-6 rounded-[min(var(--radius-4xl),24px)] bg-popover p-6 text-sm text-popover-foreground shadow-xl ring-1 ring-foreground/5 outline-none sm:max-w-md dark:ring-foreground/10 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 data-closed:duration-200",
             className
           )}
         >
