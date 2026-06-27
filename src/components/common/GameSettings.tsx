@@ -8,11 +8,11 @@ import { Switch } from "../ui/switch";
 export default function GameSettings() {
   return(
     <Dialog>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button variant="ghost" className="cursor-pointer">
           <Settings className="scale-150 md:scale-180"/>
         </Button>
-      </DialogTrigger> 
+      </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="text-3xl font-martires-black mb-6">SETTINGS</DialogTitle>

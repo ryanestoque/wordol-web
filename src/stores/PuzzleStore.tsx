@@ -1,15 +1,20 @@
 import words from '../../words.json'
 import { toast } from "sonner"
+import { db, auth } from "@/lib/firebase";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { runInAction } from "mobx";
 
 export default {
   word: '',
   guesses: [],
   currentGuess: 0,
+  loading: true,
+  
   get won() {
-    return this.guesses[this.currentGuess - 1] === this.word
+    return this.currentGuess > 0 && this.guesses[this.currentGuess - 1].toLowerCase() === this.word.toLowerCase()
   },
   get lost() {
-    return this.currentGuess === 6
+    return this.currentGuess === 6 && !this.won
   },
   get allGuesses() {
     return this.guesses.slice(0, this.currentGuess).join('').split('')
@@ -19,10 +24,10 @@ export default {
       this.word
         .split('')
         // if any guesses include this letter in this position/index
-        .filter((letter, i) => {
+        .filter((letter: string, i: number) => {
           return this.guesses
             .slice(0, this.currentGuess)
-            .map((word) => word[i])
+            .map((word: string) => word[i])
             .includes(letter)
         })
     )
@@ -30,44 +35,135 @@ export default {
   get inexactGuesses() {
     return this.word
       .split('')
-      .filter((letter) => this.allGuesses.includes(letter))
+      .filter((letter: string) => this.allGuesses.includes(letter))
   },
-  init() {
-    this.word = words[Math.round(Math.random() * words.length)]
+  
+  async init() {
+    this.loading = true;
     this.guesses.replace(new Array(6).fill(''))
     this.currentGuess = 0
-  },
-  submitGuess() {
-    const currentAttempt = this.guesses[this.currentGuess];
+    
+    // Get today's date string YYYY-MM-DD
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    const dateString = `${yyyy}-${mm}-${dd}`;
 
-    if (words.includes(currentAttempt)) {
-      this.currentGuess += 1
+    try {
+      // 1. Fetch word of the day
+      const wordDoc = await getDoc(doc(db, "daily_words", dateString));
+      
+      runInAction(() => {
+        if (wordDoc.exists()) {
+          this.word = wordDoc.data().word;
+        } else {
+          // Fallback just in case
+          this.word = words[Math.round(Math.random() * words.length)];
+        }
+      });
+
+      // 2. Fetch user's guesses for today
+      const user = auth.currentUser;
+      if (user) {
+        const gameDocRef = doc(db, `users/${user.uid}/games`, dateString);
+        const gameDoc = await getDoc(gameDocRef);
+        
+        runInAction(() => {
+          if (gameDoc.exists()) {
+            const data = gameDoc.data();
+            if (data.guesses && data.guesses.length > 0) {
+              for (let i = 0; i < data.guesses.length; i++) {
+                 this.guesses[i] = data.guesses[i];
+              }
+              this.currentGuess = data.guesses.length;
+            }
+          }
+        });
+      }
+    } catch (err) {
+      console.error("Error initializing game:", err);
+      toast.error("Failed to load the game data");
+    } finally {
+      runInAction(() => {
+        this.loading = false;
+      });
     }
+  },
+
+  async syncProgress() {
+    const user = auth.currentUser;
+    if (!user) return;
+
+    const today = new Date();
+    const dateString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+    const gameDocRef = doc(db, `users/${user.uid}/games`, dateString);
+    
+    const currentGuesses = this.guesses.slice(0, this.currentGuess);
+    
+    await setDoc(gameDocRef, {
+      guesses: currentGuesses,
+      won: this.won,
+      completed: this.won || this.lost,
+      lastPlayed: new Date()
+    }, { merge: true });
+
+    if (this.won || this.lost) {
+      await this.updateUserStats(user.uid, this.won);
+    }
+  },
+
+  async updateUserStats(uid: string, won: boolean) {
+    const userDocRef = doc(db, "users", uid);
+    const userDoc = await getDoc(userDocRef);
+    if (userDoc.exists()) {
+      const data = userDoc.data();
+      let stats = data.stats || { gamesPlayed: 0, wins: 0, currentStreak: 0, maxStreak: 0 };
+      
+      stats.gamesPlayed += 1;
+      if (won) {
+        stats.wins += 1;
+        stats.currentStreak += 1;
+        if (stats.currentStreak > stats.maxStreak) {
+          stats.maxStreak = stats.currentStreak;
+        }
+      } else {
+        stats.currentStreak = 0;
+      }
+
+      await updateDoc(userDocRef, { stats });
+    }
+  },
+
+  async submitGuess() {
+    if (this.loading) return;
+    const currentAttempt = this.guesses[this.currentGuess];
 
     if (currentAttempt.length < 5) {
       toast.error("Not enough letters!")
       return;
     }
 
-    const lowercasedWords = words.map(w => w.toLowerCase());
+    const lowercasedWords = words.map((w: string) => w.toLowerCase());
 
     if (!lowercasedWords.includes(currentAttempt.toLowerCase())) {
       toast.error("Not in the word list!")
       return;
     }
 
-    // Check if the guess is the winning word
-    if (currentAttempt.toLowerCase() === this.word.toLowerCase()) {
+    this.currentGuess += 1;
+
+    if (this.won) {
       toast("You Win!");
-    } else {
-  
-      if (this.currentGuess === 6 && currentAttempt !== this.word) {
-        toast("Secret word: " + this.word.toUpperCase());
-      }
+    } else if (this.lost) {
+      toast("Secret word: " + this.word.toUpperCase());
     }
+    
+    await this.syncProgress();
   },
-  handleKeyup(e) {
-    if (this.won || this.lost) {
+  
+  handleKeyup(e: any) {
+    if (this.won || this.lost || this.loading) {
       return
     }
 
@@ -86,8 +182,9 @@ export default {
         this.guesses[this.currentGuess] + e.key.toLowerCase()
     }
   },
+  
   handleKeyPress(key: string) {
-    if (this.won || this.lost) return;
+    if (this.won || this.lost || this.loading) return;
   
     if (key === "enter") {
       this.submitGuess();
@@ -105,5 +202,4 @@ export default {
       this.guesses[this.currentGuess] += key.toLowerCase();
     }
   }
-  
 }
