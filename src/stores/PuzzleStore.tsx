@@ -1,7 +1,7 @@
 import words from '../../words.json'
 import { toast } from "sonner"
 import { db, auth } from "@/lib/firebase";
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc, getDoc } from "firebase/firestore";
 import { runInAction } from "mobx";
 
 export default {
@@ -38,57 +38,22 @@ export default {
       .filter((letter: string) => this.allGuesses.includes(letter))
   },
   
-  async init() {
-    this.loading = true;
-    this.guesses.replace(new Array(6).fill(''))
-    this.currentGuess = 0
-    
-    // Get today's date string YYYY-MM-DD
-    const today = new Date();
-    const yyyy = today.getFullYear();
-    const mm = String(today.getMonth() + 1).padStart(2, '0');
-    const dd = String(today.getDate()).padStart(2, '0');
-    const dateString = `${yyyy}-${mm}-${dd}`;
+  init(word: string, savedGame: { guesses: string[]; won: boolean; completed: boolean } | null) {
+    runInAction(() => {
+      this.loading = true;
+      this.guesses.replace(new Array(6).fill(''));
+      this.currentGuess = 0;
+      this.word = word;
 
-    try {
-      // 1. Fetch word of the day
-      const wordDoc = await getDoc(doc(db, "daily_words", dateString));
-      
-      runInAction(() => {
-        if (wordDoc.exists()) {
-          this.word = wordDoc.data().word;
-        } else {
-          // Fallback just in case
-          this.word = words[Math.round(Math.random() * words.length)];
+      if (savedGame && savedGame.guesses && savedGame.guesses.length > 0) {
+        for (let i = 0; i < savedGame.guesses.length; i++) {
+          this.guesses[i] = savedGame.guesses[i];
         }
-      });
-
-      // 2. Fetch user's guesses for today
-      const user = auth.currentUser;
-      if (user) {
-        const gameDocRef = doc(db, `users/${user.uid}/games`, dateString);
-        const gameDoc = await getDoc(gameDocRef);
-        
-        runInAction(() => {
-          if (gameDoc.exists()) {
-            const data = gameDoc.data();
-            if (data.guesses && data.guesses.length > 0) {
-              for (let i = 0; i < data.guesses.length; i++) {
-                 this.guesses[i] = data.guesses[i];
-              }
-              this.currentGuess = data.guesses.length;
-            }
-          }
-        });
+        this.currentGuess = savedGame.guesses.length;
       }
-    } catch (err) {
-      console.error("Error initializing game:", err);
-      toast.error("Failed to load the game data");
-    } finally {
-      runInAction(() => {
-        this.loading = false;
-      });
-    }
+
+      this.loading = false;
+    });
   },
 
   async syncProgress() {

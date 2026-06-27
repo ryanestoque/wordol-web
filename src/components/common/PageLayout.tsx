@@ -1,6 +1,6 @@
 import GameSettings from "@/components/common/GameSettings";
 import type { ReactNode } from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 interface PageLayoutProps {
   children: ReactNode;
@@ -17,7 +17,7 @@ export default function PageLayout({ children }: PageLayoutProps) {
 
   const formattedDate = new Intl.DateTimeFormat("en-US", options).format(today);
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     initial: { opacity: 0 },
     animate: { 
       opacity: 1,

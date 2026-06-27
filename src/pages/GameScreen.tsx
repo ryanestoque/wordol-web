@@ -4,21 +4,30 @@ import Keyboard from "@/components/common/Keyboard";
 import { Toaster } from "@/components/ui/sonner";
 import PuzzleStore from "@/stores/PuzzleStore";
 import { observer, useLocalObservable } from "mobx-react-lite";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { useEffect } from "react";
+import { usePuzzleData } from "@/hooks/usePuzzleData";
 
 export default observer(function GameScreen() {
   const store = useLocalObservable(() => PuzzleStore)
-  useEffect(() => {
-    store.init()
-    window.addEventListener('keyup', store.handleKeyup)
+  const { word, savedGame, isLoading } = usePuzzleData();
 
+  // Hydrate the store once SWR has fetched both the word and saved game
+  useEffect(() => {
+    if (!isLoading && word) {
+      store.init(word, savedGame ?? null);
+    }
+  }, [isLoading, word, savedGame])
+
+  useEffect(() => {
+    window.addEventListener('keyup', store.handleKeyup)
     return () => {
       window.removeEventListener('keyup', store.handleKeyup)
     }
   }, [])
 
-  const containerVariants = {
+
+  const containerVariants: Variants = {
     initial: { opacity: 0 },
     animate: { 
       opacity: 1,
@@ -27,7 +36,7 @@ export default observer(function GameScreen() {
     exit: { opacity: 0, transition: { duration: 0.2 } }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0, transition: { duration: 0.5, type: "spring", stiffness: 100 } }
   };
