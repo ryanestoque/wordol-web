@@ -6,7 +6,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog"
-import { Lightbulb, Loader2, CheckCircle2 } from "lucide-react";
+import { MessageSquarePlus, Loader2, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
@@ -133,7 +133,7 @@ export default function SuggestWord({ context }: { context?: string }) {
       {context === "header" ? (
         <DialogTrigger asChild>
           <Button variant="ghost" className="cursor-pointer">
-            <Lightbulb className="scale-150 md:scale-180" />
+            <MessageSquarePlus className="scale-150 md:scale-180" />
           </Button>
         </DialogTrigger>
       ) : (

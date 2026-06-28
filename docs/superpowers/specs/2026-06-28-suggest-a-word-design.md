@@ -18,7 +18,7 @@ A feature that allows authenticated users to suggest new 5-letter Bisaya words f
 ## User Interface
 The feature is accessible from two locations:
 1. **Home Page**: A full-width outline button placed under the "How to Play?" button.
-2. **Game Screen**: A lightbulb icon in the top header, matching the existing utility icons.
+2. **Game Screen**: A "Message Square Plus" icon in the top header, matching the existing utility icons.
 
 The dialog modal contains:
 - A title and short description explaining the feature.
