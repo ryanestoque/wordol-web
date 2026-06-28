@@ -11,7 +11,9 @@ A feature that allows authenticated users to suggest new 5-letter Bisaya words f
 - **Data Storage**: Submissions are written directly to a Firestore collection (`word_suggestions`).
 - **Validation**:
   - **Local**: Zod validates that the input is exactly 5 letters, contains only alphabetic characters, and does not already exist in the local `words.json`.
-  - **Remote**: Queries Firestore before writing to ensure the word hasn't already been suggested and is pending review.
+  - **Remote**: 
+    - Queries Firestore before writing to ensure the word hasn't already been suggested.
+    - Queries Firestore to ensure the user hasn't exceeded the daily limit of 5 suggestions per day (client-side date filtering used to avoid requiring composite indexes).
 
 ## User Interface
 The feature is accessible from two locations:

@@ -26,6 +26,7 @@
 - [x] **Step 1: Write the component skeleton and imports**
 - [x] **Step 2: Add Zod Schema and React Hook Form setup**
 - [x] **Step 3: Implement Firestore write logic and duplicate checking**
+- [x] **Step 3.5: Implement Daily Rate Limit (5 per day) check**
 - [x] **Step 4: Implement Dialog UI (Trigger, Form, Success State)**
 - [x] **Step 5: Commit**
 

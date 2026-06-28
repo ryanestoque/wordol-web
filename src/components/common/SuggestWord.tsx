@@ -84,6 +84,31 @@ export default function SuggestWord({ context }: { context?: string }) {
         return;
       }
 
+      // Check daily limit (5 per day)
+      const userSuggestionsQuery = query(suggestionsRef, where("suggestedBy", "==", user.uid));
+      const userSnapshot = await getDocs(userSuggestionsQuery);
+      
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      
+      let suggestionsToday = 0;
+      userSnapshot.forEach((doc) => {
+        const data = doc.data();
+        if (data.suggestedAt) {
+          // Firebase Timestamp to JS Date
+          const suggestedDate = data.suggestedAt.toDate();
+          if (suggestedDate >= today) {
+            suggestionsToday++;
+          }
+        }
+      });
+
+      if (suggestionsToday >= 5) {
+        toast.error("You've reached your daily limit of 5 suggestions! Come back tomorrow. 🙌");
+        setSubmitting(false);
+        return;
+      }
+
       // Write the suggestion to Firestore
       await addDoc(suggestionsRef, {
         word,
