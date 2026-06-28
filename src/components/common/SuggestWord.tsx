@@ -215,10 +215,10 @@ export default function SuggestWord({ context }: { context?: string }) {
       <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-4xl font-martires-black uppercase tracking-wider text-left">
-            SUGGEST A WORD
+            SUGGEST A WORD!
           </DialogTitle>
-          <DialogDescription className="text-lg font-martires-regular uppercase text-left">
-            Help grow the Bisaya word list!
+          <DialogDescription className="text-base text-foreground font-inter-regular text-left">
+            Help grow the Bisaya word list
           </DialogDescription>
         </DialogHeader>
 
@@ -295,7 +295,7 @@ export default function SuggestWord({ context }: { context?: string }) {
         ) : (
           // Form state
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-            <p className="font-inter-regular text-sm text-muted-foreground">
+            <p className="font-inter-regular text-sm text-foreground">
               Know a 5-letter Bisaya word that's not in our list? Type it below!
             </p>
 
