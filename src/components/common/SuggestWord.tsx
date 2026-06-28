@@ -215,8 +215,8 @@ export default function SuggestWord({ context }: { context?: string }) {
 
       <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-4xl font-martires-black uppercase tracking-wider text-left">
-            SUGGEST A WORD!
+          <DialogTitle className="text-3xl font-martires-black uppercase tracking-wide text-left">
+            SUGGEST A WORD
           </DialogTitle>
           <DialogDescription className="text-base text-foreground font-inter-regular text-left">
             Help grow the Bisaya word list
