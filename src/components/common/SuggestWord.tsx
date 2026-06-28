@@ -184,7 +184,7 @@ export default function SuggestWord({ context }: { context?: string }) {
                 ? usedToday >= DAILY_LIMIT
                   ? "bg-red-500"
                   : "bg-foreground"
-                : "bg-border"
+                : "bg-muted"
             }`}
           />
         ))}
