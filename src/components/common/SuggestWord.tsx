@@ -183,7 +183,7 @@ export default function SuggestWord({ context }: { context?: string }) {
               i < usedToday
                 ? usedToday >= DAILY_LIMIT
                   ? "bg-red-500"
-                  : "bg-blue-500"
+                  : "bg-foreground"
                 : "bg-border"
             }`}
           />
@@ -226,7 +226,7 @@ export default function SuggestWord({ context }: { context?: string }) {
         <div className={`rounded-2xl p-4 border ${
           isLimitReached
             ? "bg-red-50 border-red-200 dark:bg-red-950/30 dark:border-red-900"
-            : "bg-blue-50 border-blue-200 dark:bg-blue-950/30 dark:border-blue-900"
+            : "bg-transparent border-border"
         }`}>
           {loadingQuota ? (
             <div className="flex items-center gap-2 text-muted-foreground">
@@ -239,10 +239,10 @@ export default function SuggestWord({ context }: { context?: string }) {
                 <div className="flex items-center gap-2">
                   {isLimitReached
                     ? <Clock className={`w-4 h-4 text-red-500`} />
-                    : <Flame className={`w-4 h-4 text-blue-500`} />
+                    : <Flame className={`w-4 h-4 text-foreground`} />
                   }
                   <span className={`font-inter-semibold text-sm ${
-                    isLimitReached ? "text-red-600 dark:text-red-400" : "text-blue-600 dark:text-blue-400"
+                    isLimitReached ? "text-red-600 dark:text-red-400" : "text-foreground"
                   }`}>
                     {isLimitReached
                       ? "Daily limit reached"
@@ -307,10 +307,10 @@ export default function SuggestWord({ context }: { context?: string }) {
                 autoComplete="off"
                 autoCapitalize="characters"
                 disabled={isLimitReached}
-                className={`text-center font-martires-black text-2xl uppercase tracking-[0.3em] h-14 rounded-xl transition-colors ${
+                className={`text-center font-martires-black text-2xl uppercase tracking-[0.3em] h-14 rounded-xl transition-colors bg-transparent ${
                   isLimitReached
                     ? "opacity-50 cursor-not-allowed"
-                    : "border-blue-300 focus-visible:ring-blue-400 dark:border-blue-700"
+                    : "border-border focus-visible:ring-foreground"
                 }`}
               />
               {errors.word && (
@@ -326,7 +326,7 @@ export default function SuggestWord({ context }: { context?: string }) {
               className={`cursor-pointer w-full py-6 text-base rounded-2xl transition-all ${
                 isLimitReached
                   ? "opacity-60 cursor-not-allowed"
-                  : "bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-600 dark:hover:bg-blue-500"
+                  : "bg-neutral-950 hover:bg-neutral-800 text-white dark:bg-neutral-50 dark:hover:bg-neutral-200 dark:text-neutral-950"
               }`}
             >
               {submitting ? (
