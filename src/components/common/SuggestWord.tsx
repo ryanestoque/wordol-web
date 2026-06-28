@@ -70,6 +70,7 @@ export default function SuggestWord({ context }: { context?: string }) {
   } = useForm<SuggestWordForm>({
     resolver: zodResolver(suggestWordSchema),
     defaultValues: { word: "" },
+    mode: "onChange",
   });
 
   // Tick the time-until-reset every minute
@@ -222,60 +223,17 @@ export default function SuggestWord({ context }: { context?: string }) {
           </DialogDescription>
         </DialogHeader>
 
-        {/* Daily Quota Card */}
-        <div className={`rounded-2xl p-4 border ${
-          isLimitReached
-            ? "bg-red-50 border-red-200 dark:bg-red-950/30 dark:border-red-900"
-            : "bg-transparent border-border"
-        }`}>
-          {loadingQuota ? (
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Loader2 className="w-4 h-4 animate-spin" />
-              <span className="font-inter-regular text-sm">Checking your quota...</span>
-            </div>
-          ) : (
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  {isLimitReached
-                    ? <Clock className={`w-4 h-4 text-red-500`} />
-                    : <Flame className={`w-4 h-4 text-foreground`} />
-                  }
-                  <span className={`font-inter-semibold text-sm ${
-                    isLimitReached ? "text-red-600 dark:text-red-400" : "text-foreground"
-                  }`}>
-                    {isLimitReached
-                      ? "Daily limit reached"
-                      : `${remaining} suggestion${remaining !== 1 ? "s" : ""} left today`
-                    }
-                  </span>
-                </div>
-                <span className="font-inter-regular text-xs text-muted-foreground">
-                  {usedToday}/{DAILY_LIMIT} used
-                </span>
-              </div>
-              <QuotaDots />
-              {isLimitReached && (
-                <p className="font-inter-regular text-xs text-red-500 dark:text-red-400 flex items-center gap-1 mt-0.5">
-                  <Clock className="w-3 h-3" />
-                  Resets in {timeUntilReset}
-                </p>
-              )}
-            </div>
-          )}
-        </div>
-
         {submitted ? (
           // Success state
           <div className="flex flex-col items-center gap-4 py-4">
-            <div className="w-16 h-16 rounded-full bg-green-100 dark:bg-green-950/40 flex items-center justify-center">
-              <CheckCircle2 className="w-9 h-9 text-green-500" />
+            <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center">
+              <CheckCircle2 className="w-9 h-9 text-foreground" />
             </div>
-            <div className="flex flex-col gap-1 text-center">
-              <p className="font-inter-semibold text-lg">
+            <div className="flex flex-col gap-4 text-center">
+              <p className="font-inter-semibold text-xl">
                 Word submitted!
               </p>
-              <p className="font-inter-regular text-muted-foreground text-sm">
+              <p className="font-inter-regular text-foreground text-sm">
                 Our team will review your suggestion and add it to the word list if it's a valid Bisaya word. Daghang salamat sa imong tabang!
               </p>
             </div>
@@ -294,31 +252,75 @@ export default function SuggestWord({ context }: { context?: string }) {
           </div>
         ) : (
           // Form state
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-            <p className="font-inter-regular text-sm text-foreground">
-              Know a 5-letter Bisaya word that's not in our list? Type it below!
-            </p>
-
-            <div className="flex flex-col gap-1.5">
-              <Input
-                {...register("word")}
-                placeholder="e.g. BABOY"
-                maxLength={5}
-                autoComplete="off"
-                autoCapitalize="characters"
-                disabled={isLimitReached}
-                className={`text-center font-martires-black text-2xl uppercase tracking-[0.3em] h-14 rounded-xl transition-colors bg-transparent ${
-                  isLimitReached
-                    ? "opacity-50 cursor-not-allowed"
-                    : "border-border focus-visible:ring-foreground"
-                }`}
-              />
-              {errors.word && (
-                <p className="text-destructive text-sm font-inter-medium">
-                  {errors.word.message}
-                </p>
+          <>
+            {/* Daily Quota Card */}
+            <div className={`rounded-2xl py-4 bg-transparent
+            }`}>
+              {loadingQuota ? (
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span className="font-inter-regular text-sm">Checking your quota...</span>
+                </div>
+              ) : (
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      {isLimitReached
+                        ? <Clock className="w-4 h-4 text-red-500" />
+                        : <Flame className="w-4 h-4 text-foreground" />
+                      }
+                      <span className={`font-inter-semibold text-sm ${
+                        isLimitReached ? "text-red-600 dark:text-red-400" : "text-foreground"
+                      }`}>
+                        {isLimitReached
+                          ? "Daily limit reached"
+                          : `${remaining} suggestion${remaining !== 1 ? "s" : ""} left today`
+                        }
+                      </span>
+                    </div>
+                    <span className="font-inter-regular text-xs text-muted-foreground">
+                      {usedToday}/{DAILY_LIMIT} used
+                    </span>
+                  </div>
+                  <QuotaDots />
+                  {isLimitReached && (
+                    <p className="font-inter-regular text-xs text-red-500 dark:text-red-400 flex items-center gap-1 mt-0.5">
+                      Resets in {timeUntilReset}
+                    </p>
+                  )}
+                </div>
               )}
             </div>
+
+          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+            {!isLimitReached && (
+              <>
+                <p className="font-inter-regular text-sm text-foreground mt-2">
+                  Know a 5-letter Bisaya word that's not in our list? Type it below!
+                </p>
+
+                <div className="flex flex-col gap-1.5">
+                  <Input
+                    {...register("word")}
+                    placeholder="e.g. BABOY"
+                    maxLength={5}
+                    autoComplete="off"
+                    autoCapitalize="characters"
+                    disabled={isLimitReached}
+                    className={`text-center font-martires-black text-2xl uppercase tracking-[0.3em] h-14 rounded-xl transition-colors bg-transparent ${
+                      isLimitReached
+                        ? "opacity-50 cursor-not-allowed"
+                        : "border-border"
+                    }`}
+                  />
+                  {errors.word && (
+                    <p className="text-destructive text-sm font-inter-medium">
+                      {errors.word.message}
+                    </p>
+                  )}
+                </div>
+              </>
+            )}
 
             <Button
               type="submit"
@@ -336,7 +338,6 @@ export default function SuggestWord({ context }: { context?: string }) {
                 </>
               ) : isLimitReached ? (
                 <>
-                  <Clock className="w-4 h-4 mr-2" />
                   Come back in {timeUntilReset}
                 </>
               ) : (
@@ -344,6 +345,7 @@ export default function SuggestWord({ context }: { context?: string }) {
               )}
             </Button>
           </form>
+          </>
         )}
       </DialogContent>
     </Dialog>
