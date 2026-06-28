@@ -41,7 +41,7 @@ export default function PageLayout({ children }: PageLayoutProps) {
         {children}
         <motion.div className="text-center mt-12" variants={{ initial: { opacity: 0 }, animate: { opacity: 1 } }}>
           <p className="font-inter-bold">{formattedDate}</p>
-          <p className="text-sm opacity-70">Created by Ryan Estoque</p>
+          <p className="text-sm">Created by Ryan Estoque</p>
         </motion.div>
       </main>
     </motion.div>
