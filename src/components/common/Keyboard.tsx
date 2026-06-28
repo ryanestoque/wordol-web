@@ -5,8 +5,8 @@ import { Delete } from 'lucide-react';
 
 export default observer(function Keyboard({ store } : any) {
   const { width } = useWindowDimensions();
-  const keySize1 = width / 12.5;
-  const keySize2 = width / 8.5;
+  const keySize1 = Math.min(width / 11.2, 44);
+  const keySize2 = Math.min(width / 7.5, 65);
 
   const qwerty = [
     'qwertyuiop', 

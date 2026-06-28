@@ -2,7 +2,7 @@ import useWindowDimensions from "@/hooks/useWindowDimensions";
 
 export default function Grid({ isGuessed, guess, word } : any) {
   const { width } = useWindowDimensions();
-  const cellSize = Math.round(width / 6);
+  const cellSize = Math.min(Math.round(width / 6.8), 56);
 
   return(
     <div className="flex gap-1">
@@ -17,8 +17,8 @@ export default function Grid({ isGuessed, guess, word } : any) {
         return(
           <div 
             key={i}
-            style={{ width: cellSize }}
-            className={`h-16 max-w-16 border-2 ${cellStyle} border-neutral-400 dark:border-neutral-600 font-martires-black uppercase flex items-center justify-center text-5xl`}>
+            style={{ width: cellSize, height: cellSize }}
+            className={`border-2 ${cellStyle} border-neutral-400 dark:border-neutral-600 font-martires-black uppercase flex items-center justify-center text-4xl`}>
             {guess[i]}
           </div>
         )
