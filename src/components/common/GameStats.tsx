@@ -40,7 +40,7 @@ export default function GameStats({ context }: { context?: string }) {
           </Button>
         </DialogTrigger> 
       : <DialogTrigger asChild>
-          <Button size={"lg"} variant={"outline"} className="cursor-pointer w-full py-6 text-lg rounded-2xl">My Stats</Button>
+          <Button size={"sm"} variant={"outline"} className="cursor-pointer w-full py-6 text-base rounded-2xl">My Stats</Button>
         </DialogTrigger> 
       }
 

@@ -18,7 +18,7 @@ export default function HowToPlay({ context }: { context?: string }) {
           </Button>
         </DialogTrigger> 
       : <DialogTrigger asChild>
-          <Button size={"lg"} variant={"outline"} className="cursor-pointer w-full py-6 text-lg rounded-2xl">How to Play?</Button>
+          <Button size={"sm"} variant={"outline"} className="cursor-pointer w-full py-6 text-base rounded-2xl">How to Play?</Button>
         </DialogTrigger> 
       }
       <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">

@@ -20,7 +20,7 @@ export default observer(function Home() {
       <div className="flex-1 flex flex-col items-center justify-center w-full mb-8">
         <Hero />
         <motion.div variants={itemVariants} className="flex flex-col gap-3 w-full max-w-[280px]">
-          <Button asChild size={"lg"} className="cursor-pointer w-full py-6 text-lg rounded-2xl">
+          <Button asChild size={"sm"} className="cursor-pointer w-full py-6 text-base rounded-2xl">
             <Link to={"/game"} >
               Play
             </Link>
