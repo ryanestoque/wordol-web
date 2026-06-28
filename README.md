@@ -22,6 +22,7 @@ Wordol is an engaging web-based word puzzle game specifically tailored for the C
 - 🎯 **Daily Cebuano Puzzles** - Guess the hidden five-letter Cebuano word with six attempts.
 - ✨ **Real-Time Feedback** - Real-time letter position feedback and validation.
 - 📊 **Player Statistics** - Player statistics and win streak tracking with Firebase.
+- 💡 **Suggest a Word** - Authenticated users can suggest new Bisaya words to be added to the dictionary.
 - 🎨 **Responsive & Dark Mode** - Responsive design with seamless dark mode support.
 
 > [!NOTE]

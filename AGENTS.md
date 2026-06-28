@@ -1,4 +1,4 @@
-﻿# AGENTS.md
+# AGENTS.md
 
 ## Project Overview
 
@@ -10,7 +10,7 @@ Key tech:
 - **Tailwind CSS v4** (via `@tailwindcss/vite` plugin — no `tailwind.config.js` needed)
 - **shadcn/ui** components (Radix UI primitives under the hood)
 - **MobX** (`mobx` + `mobx-react-lite`) for global game state
-- **Firebase** (Firestore for daily puzzle words, Firebase Auth for user accounts)
+- **Firebase** (Firestore for daily puzzle words and user word suggestions, Firebase Auth for user accounts)
 - **React Router v7** for client-side routing
 - **Framer Motion** for page transitions and animations
 - **SWR** for data fetching hooks
@@ -105,6 +105,7 @@ src/
 │   │   ├── HowToPlay.tsx
 │   │   ├── PageLayout.tsx   # Shared page wrapper
 │   │   ├── Footer.tsx
+│   │   ├── SuggestWord.tsx  # Dialog for suggesting new words
 │   │   └── ProtectedRoute.tsx  # Auth guards (ProtectedRoute + PublicRoute)
 │   └── ui/              # shadcn/ui generated components (do not manually edit)
 └── assets/
