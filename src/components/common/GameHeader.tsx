@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import GameSettings from "./GameSettings";
 import GameStats from "./GameStats";
 import HowToPlay from "./HowToPlay";
+import SuggestWord from "./SuggestWord";
 
 export default function GameHeader() {
   return(
@@ -13,6 +14,7 @@ export default function GameHeader() {
         </h1>
       </Link>
       <div className="flex items-center">
+        <SuggestWord context="header"/>
         <HowToPlay context="header"/>
         <GameStats context="header"/>
         <GameSettings />

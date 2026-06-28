@@ -4,6 +4,7 @@ import Hero from "@/components/common/Hero";
 import { Link } from "react-router-dom";
 
 import HowToPlay from "@/components/common/HowToPlay";
+import SuggestWord from "@/components/common/SuggestWord";
 import GameStats from "@/components/common/GameStats";
 import PageLayout from "@/components/common/PageLayout";
 import { motion, type Variants } from "framer-motion";
@@ -26,7 +27,8 @@ export default observer(function Home() {
             </Link>
           </Button>
           <GameStats />   
-          <HowToPlay />   
+          <HowToPlay />
+          <SuggestWord />
         </motion.div>
       </div>
       <Footer />
