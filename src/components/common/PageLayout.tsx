@@ -18,7 +18,7 @@ export default function PageLayout({ children }: PageLayoutProps) {
 
   return (
     <motion.div 
-      className="flex flex-col min-h-screen p-4 gap-4"
+      className="flex flex-col min-h-dvh p-4 gap-4"
       variants={containerVariants}
       initial="initial"
       animate="animate"
