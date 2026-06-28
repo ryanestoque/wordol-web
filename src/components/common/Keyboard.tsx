@@ -26,7 +26,7 @@ export default observer(function Keyboard({ store } : any) {
             ? "bg-yellow-500 text-white border-yellow-500"
             : store.allGuesses.includes(char)
             ? "bg-red-600 text-white border-red-600"
-            : "bg-transparent text-foreground border-neutral-400 dark:border-neutral-600" 
+            : "bg-transparent text-foreground border-neutral-300 dark:border-neutral-700" 
 
             return (
               <Button

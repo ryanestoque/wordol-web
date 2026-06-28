@@ -2,10 +2,7 @@ import { observer } from "mobx-react-lite";
 import { Button } from "@/components/ui/button";
 import Hero from "@/components/common/Hero";
 import { Link } from "react-router-dom";
-import {
-  Dialog,
-  DialogTrigger,
-} from "@/components/ui/dialog"
+
 import HowToPlay from "@/components/common/HowToPlay";
 import GameStats from "@/components/common/GameStats";
 import PageLayout from "@/components/common/PageLayout";
@@ -27,12 +24,7 @@ export default observer(function Home() {
           </Link>
         </Button>
         <GameStats />   
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button size={"lg"} variant={"outline"} className="cursor-pointer w-full py-6 text-lg rounded-2xl">How to Play?</Button>
-          </DialogTrigger> 
-          <HowToPlay />
-        </Dialog>     
+        <HowToPlay />   
       </motion.div>
     </PageLayout>
   );

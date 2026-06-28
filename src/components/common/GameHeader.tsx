@@ -1,8 +1,7 @@
-import { RotateCcw } from "lucide-react";
-import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 import GameSettings from "./GameSettings";
 import GameStats from "./GameStats";
+import HowToPlay from "./HowToPlay";
 
 export default function GameHeader() {
   return(
@@ -13,10 +12,8 @@ export default function GameHeader() {
           Wordol
         </h1>
       </Link>
-      <div className="flex items-center gap-2">
-        <Button variant="ghost" className="cursor-pointer" onClick={() => window.location.reload()}>
-          <RotateCcw className="scale-150 md:scale-180"/>
-        </Button>
+      <div className="flex items-center">
+        <HowToPlay context="header"/>
         <GameStats context="header"/>
         <GameSettings />
       </div>

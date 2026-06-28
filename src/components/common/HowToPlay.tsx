@@ -1,12 +1,27 @@
 import {
+  Dialog,
+  DialogTrigger,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import { HelpCircle } from "lucide-react";
+import { Button } from "../ui/button";
 
-export default function HowToPlay() {
+export default function HowToPlay({ context }: { context?: string }) {
   return (
-    <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
+    <Dialog>
+      {context === "header" ?       
+        <DialogTrigger asChild>
+          <Button variant="ghost" className="cursor-pointer">
+            <HelpCircle className="scale-150 md:scale-180"/>
+          </Button>
+        </DialogTrigger> 
+      : <DialogTrigger asChild>
+          <Button size={"lg"} variant={"outline"} className="cursor-pointer w-full py-6 text-lg rounded-2xl">How to Play?</Button>
+        </DialogTrigger> 
+      }
+      <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
       <DialogHeader>
         <DialogTitle className="text-4xl font-martires-black uppercase tracking-wider text-left">
           HOW TO PLAY?
@@ -71,6 +86,7 @@ export default function HowToPlay() {
         </p>
       </div>
     </DialogContent>
+    </Dialog>
   )
 }
 
