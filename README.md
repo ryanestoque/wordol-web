@@ -2,7 +2,7 @@
   <img src="public/images/wordol_logo.png" width="96" alt="Wordol logo">
   
   # Wordol
-  *A modern Wordle clone built with React and Firebase*
+  *A Cebuano Wordle Game*
   
   [![React](https://img.shields.io/badge/React-19.2.0-blue?style=flat-square&logo=react)](https://react.dev)
   [![Vite](https://img.shields.io/badge/Vite-7.2.2-646CFF?style=flat-square&logo=vite)](https://vite.dev)
@@ -11,19 +11,18 @@
 
   ⭐ If you like this project, star it on GitHub!
 
-  [Features](#features) • [Installation](#installation) • [Usage](#usage)
+  [About](#about) • [Features](#features) • [Installation](#installation) • [Usage](#usage)
 
 </div>
 
-Wordol is a feature-rich clone of the popular word-guessing game. It brings the familiar mechanics of guessing a 5-letter word in 6 tries, enhanced with user accounts, progress synchronization across devices, and comprehensive statistics tracking.
+Wordol is an engaging web-based word puzzle game specifically tailored for the Cebuano language. Inspired by the global phenomenon Wordle, it provides daily challenges to native speakers and language learners alike. The game aims to promote and preserve the Cebuano vocabulary through interactive gameplay, featuring streak tracking and progress saving via Firebase.
 
 ## Features
 
-- 🎯 **Classic Gameplay** - Guess the hidden 5-letter word in 6 attempts.
-- 🔐 **User Accounts** - Secure sign-in and authentication powered by Firebase.
-- ☁️ **Cloud Sync** - Your game progress and history are automatically saved and synced across all your devices.
-- 📊 **Detailed Statistics** - Track your games played, win rate, current streak, and max streak.
-- 🎨 **Beautiful UI** - A sleek, responsive design using Tailwind CSS, Shadcn UI, and Framer Motion animations.
+- 🎯 **Daily Cebuano Puzzles** - Guess the hidden five-letter Cebuano word with six attempts.
+- ✨ **Real-Time Feedback** - Real-time letter position feedback and validation.
+- 📊 **Player Statistics** - Player statistics and win streak tracking with Firebase.
+- 🎨 **Responsive & Dark Mode** - Responsive design with seamless dark mode support.
 
 > [!NOTE]
 > This application uses Firebase for its backend. You will need to provide your own Firebase configuration to run the project locally.
@@ -32,7 +31,7 @@ Wordol is a feature-rich clone of the popular word-guessing game. It brings the 
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/wordol.git
+git clone https://github.com/ryanestoque/wordol-web.git
 
 # Navigate to the project directory
 cd wordol
