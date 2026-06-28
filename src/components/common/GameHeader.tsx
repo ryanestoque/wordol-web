@@ -13,10 +13,10 @@ export default function GameHeader() {
           Wordol
         </h1>
       </Link>
-      <div className="flex items-center">
-        <SuggestWord context="header"/>
+      <div className="flex items-center gap-0 md:gap-1">
         <HowToPlay context="header"/>
         <GameStats context="header"/>
+        <SuggestWord context="header"/>
         <GameSettings />
       </div>
     </header>
