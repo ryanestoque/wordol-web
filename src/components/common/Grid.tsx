@@ -8,7 +8,7 @@ export default function Grid({ isGuessed, guess, word } : any) {
     <div className="flex gap-1">
       {new Array(5).fill(0).map((_, i) => {
         const cellStyle = !isGuessed 
-          ? "bg-white text-black" 
+          ? "bg-transparent text-foreground" 
           : guess[i] === word[i] 
           ? "bg-blue-600 text-white" 
           : word.includes(guess[i]) 
@@ -18,7 +18,7 @@ export default function Grid({ isGuessed, guess, word } : any) {
           <div 
             key={i}
             style={{ width: cellSize }}
-            className={`h-16 max-w-16 border-2 ${cellStyle} border-neutral-300 font-martires-black uppercase flex items-center justify-center text-5xl`}>
+            className={`h-16 max-w-16 border-2 ${cellStyle} border-neutral-400 dark:border-neutral-600 font-martires-black uppercase flex items-center justify-center text-5xl`}>
             {guess[i]}
           </div>
         )

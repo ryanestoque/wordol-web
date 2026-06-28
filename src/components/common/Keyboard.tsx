@@ -21,12 +21,12 @@ export default observer(function Keyboard({ store } : any) {
           {(typeof row === "string" ? row.split('') : row).map((char) => {
             
             const cellStyle = store.exactGuesses.includes(char)
-            ? "bg-blue-600 text-white" 
+            ? "bg-blue-600 text-white border-blue-600" 
             : store.inexactGuesses.includes(char)
-            ? "bg-yellow-500 text-white"
+            ? "bg-yellow-500 text-white border-yellow-500"
             : store.allGuesses.includes(char)
-            ? "bg-red-600 text-white"
-            : "bg-neutral-200 text-black" 
+            ? "bg-red-600 text-white border-red-600"
+            : "bg-transparent text-foreground border-neutral-400 dark:border-neutral-600" 
 
             return (
               <Button
@@ -38,7 +38,7 @@ export default observer(function Keyboard({ store } : any) {
                   height: 56,
                   maxWidth: char === "enter" || char === "backspace" ? 75 : 50,
                 }}
-                className={`cursor-pointer font-martires-bold rounded-xs m-px flex items-center justify-center uppercase hover:${cellStyle} ${cellStyle}`}
+                className={`cursor-pointer border-2 font-martires-bold rounded-xs m-px flex items-center justify-center uppercase hover:${cellStyle} ${cellStyle}`}
               >
                 {char === "backspace" ? <Delete className='scale-135'/>  : char}
               </Button>

@@ -1,7 +1,6 @@
 import GameHeader from "@/components/common/GameHeader";
 import Grid from "@/components/common/Grid";
 import Keyboard from "@/components/common/Keyboard";
-import { Toaster } from "@/components/ui/sonner";
 import PuzzleStore from "@/stores/PuzzleStore";
 import { observer, useLocalObservable } from "mobx-react-lite";
 import { motion, type Variants } from "framer-motion";
@@ -69,7 +68,7 @@ export default observer(function GameScreen() {
         {/* word: {store.word}
         guesses: {JSON.stringify(store.guesses)} */}
       </main>
-      <Toaster position="top-center" visibleToasts={1}/>
+
     </motion.div>
   )
 })

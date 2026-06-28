@@ -39,7 +39,13 @@ export default function Login() {
       navigate("/home");
     } catch (err: any) {
       console.error(err);
-      toast.error(err.message || "Google sign-in failed");
+      if (err.code === "auth/popup-closed-by-user") {
+        toast.error("Sign-in cancelled.");
+      } else if (err.code === "auth/network-request-failed") {
+        toast.error("Network error. Please check your connection.");
+      } else {
+        toast.error("Google sign-in failed. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
