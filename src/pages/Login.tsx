@@ -53,18 +53,20 @@ export default function Login() {
 
   return (
     <PageLayout>
-      <Hero />
-      <motion.div variants={{ initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0, transition: { duration: 0.5, type: "spring", stiffness: 100 } } }} className="flex flex-col gap-4 w-full max-w-[350px] mt-8">
-        <Button 
-          type="button" 
-          variant="outline" 
-          disabled={loading} 
-          onClick={handleGoogleSignIn}
-          className="p-6 cursor-pointer font-inter-medium w-full"
-        >
-          {loading ? "Signing in..." : "Sign in with Google"}
-        </Button>
-      </motion.div>
+      <div className="flex-1 flex flex-col items-center justify-center w-full">
+        <Hero />
+        <motion.div variants={{ initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0, transition: { duration: 0.5, type: "spring", stiffness: 100 } } }} className="flex flex-col gap-4 w-full max-w-[350px] mt-8">
+          <Button 
+            type="button" 
+            variant="outline" 
+            disabled={loading} 
+            onClick={handleGoogleSignIn}
+            className="p-6 cursor-pointer font-inter-medium w-full"
+          >
+            {loading ? "Signing in..." : "Sign in with Google"}
+          </Button>
+        </motion.div>
+      </div>
     </PageLayout>
   );
 }
