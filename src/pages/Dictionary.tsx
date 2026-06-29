@@ -1,10 +1,9 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Search, X, BookOpen } from "lucide-react";
+import { ArrowLeft, Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { motion, type Variants } from "framer-motion";
 import PageLayout from "@/components/common/PageLayout";
-import SuggestWordForm from "@/components/common/SuggestWordForm";
 import SuggestWord from "@/components/common/SuggestWord";
 import words from "../../words.json";
 
@@ -70,40 +69,12 @@ export default function Dictionary() {
       }
       headerRight={<SuggestWord context="header" />}
     >
-      {/* Full-width wrapper — single col mobile, two-col desktop */}
-      <div className="w-full flex-1 flex flex-col lg:flex-row lg:gap-8 pb-4 pl-2.5 min-h-0">
+      {/* Full-width wrapper */}
+      <div className="w-full flex-1 flex flex-col pb-4 pl-2.5 min-h-0">
 
-        {/* ── RIGHT SIDEBAR (Suggest Word) ─────────────────────── */}
-        {/* Hidden on mobile — the header icon handles suggest-word on small screens */}
-        <motion.aside
-          variants={containerVariants}
-          initial="initial"
-          animate="animate"
-          className="
-            hidden lg:flex flex-col gap-6
-            w-full lg:w-80 xl:w-96
-            lg:sticky lg:top-0 lg:self-start
-            order-1 lg:order-2
-          "
-        >
-          {/* Suggest Word — inline */}
-          <motion.div
-            variants={itemVariants}
-            className="rounded-2xl border border-border p-5"
-          >
-            <div className="flex items-center gap-2 mb-1">
-              <BookOpen className="w-4 h-4 text-muted-foreground" />
-              <h2 className="font-inter-semibold text-sm">Suggest a Word</h2>
-            </div>
-            <p className="font-inter-regular text-sm text-muted-foreground mb-3">
-              Know a 5-letter Bisaya word that's not in our list? Submit it below!
-            </p>
-            <SuggestWordForm mode="inline" />
-          </motion.div>
-        </motion.aside>
 
         {/* ── MAIN COLUMN — search + word list ────────────────────── */}
-        <div className="flex flex-col gap-6 flex-1 min-h-0 mt-6 lg:mt-0 order-2 lg:order-1">
+        <div className="flex flex-col gap-6 flex-1 min-h-0 mt-6 lg:mt-0">
 
           {/* Search bar */}
           <motion.div variants={itemVariants} initial="initial" animate="animate" className="relative">
