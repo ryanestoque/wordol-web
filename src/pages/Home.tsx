@@ -4,7 +4,6 @@ import Hero from "@/components/common/Hero";
 import { Link } from "react-router-dom";
 
 import HowToPlay from "@/components/common/HowToPlay";
-import SuggestWord from "@/components/common/SuggestWord";
 import GameStats from "@/components/common/GameStats";
 import PageLayout from "@/components/common/PageLayout";
 import { motion, type Variants } from "framer-motion";
@@ -28,7 +27,11 @@ export default observer(function Home() {
           </Button>
           <GameStats />   
           <HowToPlay />
-          <SuggestWord />
+          <Button asChild size={"sm"} variant={"outline"} className="cursor-pointer w-full py-6 text-base rounded-2xl">
+            <Link to={"/dictionary"}>
+              Dictionary
+            </Link>
+          </Button>
         </motion.div>
       </div>
       <Footer />

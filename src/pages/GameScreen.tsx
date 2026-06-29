@@ -42,7 +42,7 @@ export default observer(function GameScreen() {
 
   return(
     <motion.div 
-      className="flex flex-col h-screen px-2 py-4 sm:p-4 gap-4"
+      className="flex flex-col h-screen overflow-hidden px-2 py-4 sm:p-4 gap-4"
       variants={containerVariants}
       initial="initial"
       animate="animate"

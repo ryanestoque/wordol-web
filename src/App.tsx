@@ -2,6 +2,7 @@ import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import GameScreen from './pages/GameScreen'
+import Dictionary from './pages/Dictionary'
 import { AnimatePresence } from 'framer-motion'
 import { Toaster } from '@/components/ui/sonner'
 import { ProtectedRoute, PublicRoute } from '@/components/common/ProtectedRoute'
@@ -38,6 +39,13 @@ function App() {
           <Route path="/game" element={
             <ProtectedRoute>
               <GameScreen />
+            </ProtectedRoute>
+          }/>
+
+          {/* "/dictionary" → Dictionary (protected) */}
+          <Route path="/dictionary" element={
+            <ProtectedRoute>
+              <Dictionary />
             </ProtectedRoute>
           }/>
 
